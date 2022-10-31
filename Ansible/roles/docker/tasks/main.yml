@@ -4,7 +4,7 @@
   docker_image:
     name: hazem1998/livraison/cd_lab
     build:
-     path: /var/lib/jenkins/workspace/livraison_continue
+     path: /var/lib/jenkins/workspace/projet_jenkins_ansible
      pull: no
     source: build
     state: present
