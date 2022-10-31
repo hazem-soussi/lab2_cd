@@ -5,7 +5,7 @@
     name: hazem1998/livraison/cd_lab
     build:
      path: /var/lib/jenkins/workspace/projet_jenkins_ansible
-     pull: no
+     pull: true
     source: build
     state: present
     force_source: true
