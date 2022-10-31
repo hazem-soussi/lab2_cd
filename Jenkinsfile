@@ -1,12 +1,12 @@
 pipeline {
   agent any
     stages {
-        stage('Pull') {
+        stage('SCM CHECK') {
              steps{
                 script{
                     checkout([$class: 'GitSCM', branches: [[name: '*/main']],
                         userRemoteConfigs: [[
-                            url: 'https://github.com/hazem-soussi/livraison-continue']]])
+                            url: 'https://github.com/hazem-soussi/lab2_cd']]])
                 }
             }
         }
