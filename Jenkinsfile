@@ -70,8 +70,8 @@ pipeline {
           
             steps{
               
-             
-              ansiblePlaybook extras: 'DOCKER_TAG=""', installation: 'ansible', inventory: 'lab2_cd/Ansible/inventory/host.yml', playbook: 'deploy-docker.yml'
+              ansiblePlaybook extras: "-e DOCKER_TAG=${DOCKER_TAG}", installation: 'ansible', inventory: 'lab2_cd/Ansible/inventory/host.yml', playbook: 'deploy-docker.yml'
+            //  ansiblePlaybook extras: 'DOCKER_TAG=""', installation: 'ansible', inventory: 'lab2_cd/Ansible/inventory/host.yml', playbook: 'deploy-docker.yml'
 
              // ansiblePlaybook credentialsId: 'dev-server', disableHostKeyChecking: true, 
              //   extras: "-e DOCKER_TAG=${DOCKER_TAG}", installation: 'ansible', inventory: 'dev.inv', playbook: 'deploy-docker.yml'
