@@ -2,7 +2,7 @@
 # tasks file for docker
 - name: create image docker
   docker_image:
-    name: aminegongi/cd_lab
+    name: hazem1998/livraison/cd_lab
     build:
      path: /var/lib/jenkins/workspace/livraison_continue
      pull: no
