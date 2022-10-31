@@ -1,0 +1,8 @@
+localhost ansible_connection=local
+
+[Server]
+localhost 
+
+[Server:vars]
+ansible_python_interpreter= /usr/bin/python
+ansible_user=amineg
