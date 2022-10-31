@@ -1,5 +1,9 @@
 pipeline {
   agent any
+    environment {
+      DOCKER_TAG = getVersion()
+    }
+  
     stages {
         stage('SCM CHECK') {
              steps{
@@ -24,7 +28,7 @@ pipeline {
                 }
             }
         }
-        stage('Docker') {
+       /* stage('Docker') {
              steps{
                 script{
                     sh "sudo ansible-playbook Ansible/docker.yml -i Ansible/inventory/host.yml"
@@ -37,6 +41,50 @@ pipeline {
                     sh "ansible-playbook Ansible/docker-registry.yml -i Ansible/inventory/host.yml"
                 }
             }
+        }*/
+      
+      
+      stage('Docker Build'){
+            steps{
+                sh "docker build . -t hazem1998/livraison:${DOCKER_TAG} "
+            }
         }
-       }
-      }
+        
+        stage('DockerHub Push'){
+            steps{
+              
+              
+              withCredentials([string(credentialsId: 'zooma_password', variable: 'hazem')]) {
+                    sh "docker login -u hazem1998 -p ${hazem}"
+              }
+                sh "docker push hazem1998/livraison:${DOCKER_TAG} "
+            }
+        }
+        
+        stage('Docker Deploy'){
+          
+          
+          
+          
+          
+          
+            steps{
+              
+             
+              ansiblePlaybook extras: 'DOCKER_TAG=""', installation: 'ansible', inventory: 'lab2_cd/Ansible/inventory/host.yml', playbook: 'deploy-docker.yml'
+
+             // ansiblePlaybook credentialsId: 'dev-server', disableHostKeyChecking: true, 
+             //   extras: "-e DOCKER_TAG=${DOCKER_TAG}", installation: 'ansible', inventory: 'dev.inv', playbook: 'deploy-docker.yml'
+            }
+        }
+      
+      
+      
+    }
+}
+
+def getVersion(){
+    def commitHash = sh label: '', returnStdout: true, script: 'git rev-parse --short HEAD'
+    return commitHash
+}
+
