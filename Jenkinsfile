@@ -8,9 +8,11 @@ pipeline {
         stage('SCM CHECK') {
              steps{
                 script{
-                    checkout([$class: 'GitSCM', branches: [[name: '*/main']],
+                /*   checkout([$class: 'GitSCM', branches: [[name: '*/main']],
                         userRemoteConfigs: [[
-                            url: 'https://github.com/hazem-soussi/lab2_cd']]])
+                            url: 'https://github.com/hazem-soussi/lab2_cd']]]) */
+                 git branch: 'main', credentialsId: 'git_git_hazem', url: 'https://github.com/hazem-soussi/lab2_cd'
+                  
                 }
             }
         }
