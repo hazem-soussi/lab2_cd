@@ -11,7 +11,8 @@ pipeline {
                 /*   checkout([$class: 'GitSCM', branches: [[name: '*/main']],
                         userRemoteConfigs: [[
                             url: 'https://github.com/hazem-soussi/lab2_cd']]]) */
-                 git branch: 'main', credentialsId: 'git_git_hazem', url: 'https://github.com/hazem-soussi/lab2_cd'
+                // git branch: 'main', credentialsId: 'git_git_hazem', url: 'https://github.com/hazem-soussi/lab2_cd'
+                  git branch: 'main', credentialsId: 'ssh_github', url: 'https://github.com/hazem-soussi/lab2_cd'
                   
                 }
             }
