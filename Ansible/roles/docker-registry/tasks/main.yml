@@ -2,8 +2,8 @@
 # tasks file for docker-registry
 - name: Log into DockerHub
   docker_login:
-    username: hazem1998
-    password: 08021998Hazem
+    username: zooma
+    password: zooma
     email: hazem.soussi@esprit.tn
 - name: Push to docker hub
   docker_image:
